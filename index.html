@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-i18n="title">Tap2Sound — Toca y suena</title>
+<meta name="description" data-i18n="desc" content="Tap2Sound: acerca el móvil a la etiqueta NFC y conecta al instante con tu altavoz o auriculares Bluetooth." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#141414;--bg:#ffffff;--soft:#f5f3ef;--muted:#6b6b6b;
+    --accent:#c1912f;--radius:18px;--maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  /* language switch */
+  .lang{position:absolute;top:18px;right:22px;display:flex;gap:4px;font-size:.85rem;font-weight:600}
+  .lang button{border:1.5px solid #ddd;background:#fff;border-radius:100px;padding:5px 12px;cursor:pointer;color:var(--muted);transition:.15s;font-family:inherit;font-weight:600}
+  .lang button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  header{padding:44px 0 8px;text-align:center;position:relative}
+  .logo{width:132px;height:132px;margin:0 auto}
+
+  .hero{text-align:center;padding:26px 0 44px}
+  .hero h1{font-size:clamp(2.1rem,6vw,3.4rem);font-weight:800;line-height:1.08;letter-spacing:-.5px}
+  .hero h1 span{color:var(--accent)}
+  .hero p{max-width:620px;margin:16px auto 0;color:var(--muted);font-size:1.08rem}
+  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:100px;font-weight:600;font-size:1rem;text-decoration:none;border:2px solid var(--ink);transition:.18s}
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
+  .btn-ghost:hover{background:var(--soft)}
+
+  .steps{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:40px 0 20px}
+  .step{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.95rem}
+  .step b{color:var(--ink)}
+  .dot{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:700}
+
+  .features{padding:30px 0 10px}
+  .features h2{text-align:center;font-size:clamp(1.5rem,4vw,2rem);font-weight:700;margin-bottom:8px}
+  .features .sub{text-align:center;color:var(--muted);margin-bottom:34px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{position:relative;overflow:hidden;border-radius:var(--radius);padding:34px 24px;text-align:center;border:1px solid #ece8e1;transition:.18s;isolation:isolate}
+  .card::before{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center}
+  .card::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(255,255,255,.72)}
+  .card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.08)}
+  /* fondos genéricos por columna */
+  .bg1::before{background:
+     radial-gradient(120px 120px at 30% 20%, rgba(193,145,47,.28), transparent 70%),
+     repeating-radial-gradient(circle at 50% 120%, rgba(20,20,20,.05) 0 2px, transparent 2px 16px),
+     linear-gradient(135deg,#f7efe0,#efe7d8)}
+  .bg2::before{background:
+     radial-gradient(120px 120px at 70% 20%, rgba(80,110,140,.25), transparent 70%),
+     repeating-linear-gradient(90deg, rgba(20,20,20,.045) 0 2px, transparent 2px 14px),
+     linear-gradient(135deg,#eef1f4,#e4e9ee)}
+  .bg3::before{background:
+     radial-gradient(140px 140px at 50% 15%, rgba(193,145,47,.30), transparent 70%),
+     repeating-radial-gradient(circle at 50% 50%, rgba(20,20,20,.05) 0 2px, transparent 2px 18px),
+     linear-gradient(135deg,#f4ece0,#ece0cf)}
+  .card .art{width:120px;height:120px;margin:0 auto 18px}
+  .card h3{font-size:1.15rem;font-weight:700;margin-bottom:6px}
+  .card p{color:#4a4a4a;font-size:.96rem}
+
+  footer{margin-top:56px;border-top:1px solid #eee;padding:34px 0 44px;text-align:center}
+  footer .mail{font-size:1.15rem;font-weight:600;text-decoration:none;border-bottom:2px solid var(--accent);padding-bottom:2px}
+  footer .small{color:var(--muted);font-size:.85rem;margin-top:16px}
+
+  svg{display:block;width:100%;height:100%}
+  .stroke{fill:none;stroke:var(--ink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+  .stroke-thin{fill:none;stroke:var(--ink);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+
+  @media(max-width:760px){
+    .grid{grid-template-columns:1fr;max-width:360px;margin:0 auto}
+    .steps{flex-direction:column;align-items:center;gap:10px}
+  }
+</style>
+</head>
+<body>
+
+<div class="lang">
+  <button data-lang="es" onclick="setLang('es')">ES</button>
+  <button data-lang="en" onclick="setLang('en')">EN</button>
+</div>
+
+<header>
+  <div class="logo" aria-label="Tap2Sound">
+    <svg viewBox="0 0 200 200" role="img">
+      <circle cx="100" cy="100" r="95" class="stroke" stroke-width="6"/>
+      <circle cx="100" cy="100" r="82" class="stroke" stroke-width="3"/>
+      <path d="M84 70 q16 -14 32 0" class="stroke-thin"/>
+      <path d="M78 62 q22 -20 44 0" class="stroke-thin"/>
+      <path d="M72 54 q28 -26 56 0" class="stroke-thin"/>
+      <rect x="84" y="82" width="32" height="54" rx="6" class="stroke-thin"/>
+      <circle cx="100" cy="127" r="2.5" fill="var(--ink)"/>
+      <text x="100" y="46" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="21" fill="#141414">Tap2Sound</text>
+      <path id="arc" d="M50 150 a52 52 0 0 0 100 0" fill="none"/>
+      <text font-family="Poppins,sans-serif" font-weight="700" font-size="15" letter-spacing="2" fill="#141414">
+        <textPath href="#arc" startOffset="50%" text-anchor="middle">TAP HERE</textPath>
+      </text>
+    </svg>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <h1 data-i18n="h1">Toca. Y <span data-i18n="h1b">suena</span>.</h1>
+  <p data-i18n="lead">Acerca tu móvil a la etiqueta Tap2Sound y conéctate al instante con tu altavoz o auriculares Bluetooth. Sin menús, sin buscar dispositivos: un toque y listo.</p>
+
+  <div class="cta">
+    <a class="btn btn-primary" id="buy" href="#comprar" data-i18n="buy">Comprar en Amazon</a>
+    <a class="btn btn-ghost" href="#como" data-i18n="how">Cómo funciona</a>
+  </div>
+
+  <div class="steps" id="como">
+    <div class="step"><span class="dot">1</span><span data-i18n="s1">Pega la <b>etiqueta NFC</b> en tu altavoz</span></div>
+    <div class="step"><span class="dot">2</span><span data-i18n="s2">Empareja una vez con la <b>app</b></span></div>
+    <div class="step"><span class="dot">3</span><span data-i18n="s3">A partir de ahí, <b>toca y suena</b></span></div>
+  </div>
+</section>
+
+<section class="features wrap">
+  <h2 data-i18n="fh">Un toque, tres formas de escuchar</h2>
+  <p class="sub" data-i18n="fsub">La misma etiqueta, cualquier dispositivo Bluetooth.</p>
+
+  <div class="grid">
+    <div class="card bg1">
+      <div class="art">
+        <svg viewBox="0 0 120 120">
+          <rect x="24" y="34" width="72" height="60" rx="10" class="stroke"/>
+          <circle cx="60" cy="70" r="17" class="stroke-thin"/><circle cx="60" cy="70" r="6" class="stroke-thin"/>
+          <circle cx="38" cy="46" r="3" fill="var(--ink)"/>
+          <path d="M78 40 v14" class="stroke-thin"/><path d="M84 42 q6 5 0 10" class="stroke-thin"/>
+        </svg>
+      </div>
+      <h3 data-i18n="c1t">Altavoz portátil</h3>
+      <p data-i18n="c1p">Llévatelo a cualquier sitio. Un toque y tu música empieza a sonar allá donde estés.</p>
+    </div>
+
+    <div class="card bg2">
+      <div class="art">
+        <svg viewBox="0 0 120 120">
+          <path d="M28 66 v-6 a32 32 0 0 1 64 0 v6" class="stroke"/>
+          <rect x="22" y="64" width="16" height="26" rx="6" class="stroke"/>
+          <rect x="82" y="64" width="16" height="26" rx="6" class="stroke"/>
+          <path d="M100 74 q7 4 0 10" class="stroke-thin"/><path d="M106 70 q12 8 0 18" class="stroke-thin"/>
+        </svg>
+      </div>
+      <h3 data-i18n="c2t">Auriculares</h3>
+      <p data-i18n="c2p">Tu sonido, solo para ti. Conéctate a tus cascos Bluetooth con el mismo gesto.</p>
+    </div>
+
+    <div class="card bg3">
+      <div class="art">
+        <svg viewBox="0 0 120 120">
+          <rect x="40" y="20" width="40" height="82" rx="8" class="stroke"/>
+          <circle cx="60" cy="44" r="9" class="stroke-thin"/>
+          <circle cx="60" cy="78" r="15" class="stroke-thin"/><circle cx="60" cy="78" r="5" class="stroke-thin"/>
+          <path d="M92 40 q10 20 0 40" class="stroke-thin"/><path d="M28 40 q-10 20 0 40" class="stroke-thin"/>
+        </svg>
+      </div>
+      <h3 data-i18n="c3t">Equipo de casa</h3>
+      <p data-i18n="c3p">Del salón a la fiesta. Tu equipo de sonido potente, listo con un solo toque.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="comprar">
+  <div class="wrap">
+    <p style="color:var(--muted);margin-bottom:8px" data-i18n="cont">¿Preguntas o pedidos?</p>
+    <a class="mail" href="mailto:info@tap2sound.com">info@tap2sound.com</a>
+    <p class="small">© <span id="y"></span> Tap2Sound · <span data-i18n="tag">Toca y suena</span></p>
+  </div>
+</footer>
+
+<script>
+const I18N = {
+  es:{title:"Tap2Sound — Toca y suena",
+    h1:'Toca. Y <span data-i18n="h1b">suena</span>.',
+    lead:"Acerca tu móvil a la etiqueta Tap2Sound y conéctate al instante con tu altavoz o auriculares Bluetooth. Sin menús, sin buscar dispositivos: un toque y listo.",
+    buy:"Comprar en Amazon",how:"Cómo funciona",
+    s1:"Pega la <b>etiqueta NFC</b> en tu altavoz",s2:"Empareja una vez con la <b>app</b>",s3:"A partir de ahí, <b>toca y suena</b>",
+    fh:"Un toque, tres formas de escuchar",fsub:"La misma etiqueta, cualquier dispositivo Bluetooth.",
+    c1t:"Altavoz portátil",c1p:"Llévatelo a cualquier sitio. Un toque y tu música empieza a sonar allá donde estés.",
+    c2t:"Auriculares",c2p:"Tu sonido, solo para ti. Conéctate a tus cascos Bluetooth con el mismo gesto.",
+    c3t:"Equipo de casa",c3p:"Del salón a la fiesta. Tu equipo de sonido potente, listo con un solo toque.",
+    cont:"¿Preguntas o pedidos?",tag:"Toca y suena"},
+  en:{title:"Tap2Sound — Tap and it plays",
+    h1:'Tap. And it <span data-i18n="h1b">plays</span>.',
+    lead:"Hold your phone to the Tap2Sound tag and connect instantly to your Bluetooth speaker or headphones. No menus, no device hunting — one tap and you're in.",
+    buy:"Buy on Amazon",how:"How it works",
+    s1:"Stick the <b>NFC tag</b> on your speaker",s2:"Pair once with the <b>app</b>",s3:"From then on, <b>tap and play</b>",
+    fh:"One tap, three ways to listen",fsub:"The same tag, any Bluetooth device.",
+    c1t:"Portable speaker",c1p:"Take it anywhere. One tap and your music starts playing wherever you are.",
+    c2t:"Headphones",c2p:"Your sound, just for you. Connect to your Bluetooth headphones with the same gesture.",
+    c3t:"Home system",c3p:"From the living room to the party. Your powerful sound system, ready with a single tap.",
+    cont:"Questions or orders?",tag:"Tap and it plays"}
+};
+function setLang(l){
+  const d=I18N[l]||I18N.es;
+  document.documentElement.lang=l;
+  document.title=d.title;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(k==='title'||k==='desc'||k==='h1b')return;
+    if(d[k]!=null) el.innerHTML=d[k];
+  });
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+  try{localStorage.setItem('t2s_lang',l)}catch(e){}
+}
+(function(){
+  let l='es';
+  try{l=localStorage.getItem('t2s_lang')||( (navigator.language||'es').slice(0,2)==='en'?'en':'es')}catch(e){}
+  setLang(I18N[l]?l:'es');
+  document.getElementById('y').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
