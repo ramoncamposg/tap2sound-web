@@ -1,224 +1,238 @@
-<!-- Updated for GitHub Pages deploy -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title data-i18n="title">Tap2Sound — Toca y suena</title>
-<meta name="description" data-i18n="desc" content="Tap2Sound: acerca el móvil a la etiqueta NFC y conecta al instante con tu altavoz o auriculares Bluetooth." />
+<meta name="description" content="Tap2Sound: acerca el móvil a la etiqueta NFC y conecta al instante con tu altavoz o auriculares Bluetooth." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --ink:#141414;--bg:#ffffff;--soft:#f5f3ef;--muted:#6b6b6b;
-    --accent:#c1912f;--radius:18px;--maxw:1080px;
+    --bg:#0b0b0d;--bg2:#141418;--card:#17171c;--ink:#f3f1ec;--muted:#a4a2a0;
+    --accent:#d1a24a;--accent2:#e9c37e;--line:#26262c;--radius:20px;--maxw:1120px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  a{color:inherit}
+  body{font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,.dsp{font-family:'Space Grotesk','Poppins',sans-serif;letter-spacing:-.5px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  a{color:inherit;text-decoration:none}
 
-  /* language switch */
-  .lang{position:absolute;top:18px;right:22px;display:flex;gap:4px;font-size:.85rem;font-weight:600}
-  .lang button{border:1.5px solid #ddd;background:#fff;border-radius:100px;padding:5px 12px;cursor:pointer;color:var(--muted);transition:.15s;font-family:inherit;font-weight:600}
-  .lang button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  /* header */
+  .nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:rgba(11,11,13,.72);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:12px 22px;max-width:var(--maxw);margin:0 auto}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:1.05rem}
+  .brand .badge{width:44px;height:44px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+  .nav-right{display:flex;align-items:center;gap:12px}
+  .lang{display:flex;gap:3px}
+  .lang button{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:100px;padding:5px 11px;cursor:pointer;font-family:inherit;font-weight:600;font-size:.8rem}
+  .lang button.active{background:var(--ink);color:#111;border-color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:100px;font-weight:600;font-size:.95rem;border:1.5px solid transparent;cursor:pointer;transition:.18s}
+  .btn-gold{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#1a1204;box-shadow:0 6px 20px rgba(209,162,74,.28)}
+  .btn-gold:hover{transform:translateY(-2px)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink)}
+  .nav .btn{padding:9px 18px}
 
-  header{padding:44px 0 8px;text-align:center;position:relative}
-  .logo{width:132px;height:132px;margin:0 auto}
+  /* hero */
+  .hero{position:relative;padding:70px 0 40px}
+  .glow{position:absolute;inset:0;z-index:0;background:radial-gradient(600px 320px at 70% 12%,rgba(209,162,74,.20),transparent 70%)}
+  .hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+  .kicker{display:inline-flex;align-items:center;gap:8px;color:var(--accent2);font-weight:600;font-size:.82rem;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--line);border-radius:100px;padding:6px 14px}
+  .hero h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:700;line-height:1.02;margin:20px 0 0}
+  .hero h1 span{background:linear-gradient(120deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);font-size:1.1rem;max-width:520px;margin:18px 0 0}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .shot{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 60px rgba(0,0,0,.5);aspect-ratio:4/3}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block}
+  .shot .ring{position:absolute;bottom:14px;right:14px;background:rgba(11,11,13,.7);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:100px;padding:8px 14px;font-size:.8rem;color:var(--accent2);font-weight:600}
 
-  .hero{text-align:center;padding:26px 0 44px}
-  .hero h1{font-size:clamp(2.1rem,6vw,3.4rem);font-weight:800;line-height:1.08;letter-spacing:-.5px}
-  .hero h1 span{color:var(--accent)}
-  .hero p{max-width:620px;margin:16px auto 0;color:var(--muted);font-size:1.08rem}
-  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
-  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:100px;font-weight:600;font-size:1rem;text-decoration:none;border:2px solid var(--ink);transition:.18s}
-  .btn-primary{background:var(--ink);color:#fff}
-  .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
-  .btn-ghost:hover{background:var(--soft)}
+  /* steps */
+  .steps{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:46px 0 6px}
+  .step{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.92rem}
+  .step b{color:var(--ink);font-weight:600}
+  .dot{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#1a1204;display:grid;place-items:center;font-size:.82rem;font-weight:700;font-family:'Space Grotesk'}
 
-  .steps{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:40px 0 20px}
-  .step{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.95rem}
-  .step b{color:var(--ink)}
-  .dot{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:700}
+  /* promo */
+  .promo{margin:58px 0 10px}
+  .promo-in{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid var(--line);min-height:230px;display:flex;align-items:center}
+  .promo-in img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .promo-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,10,.9) 0%,rgba(8,8,10,.7) 42%,rgba(8,8,10,.15) 100%)}
+  .promo .content{position:relative;z-index:2;padding:34px 38px;max-width:600px}
+  .pill{display:inline-block;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#1a1204;font-weight:700;font-size:.72rem;letter-spacing:1.5px;padding:5px 14px;border-radius:100px}
+  .promo h3{font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:700;margin:14px 0 6px}
+  .promo h3 b{color:var(--accent2)}
+  .promo p{color:#d7d5d2;font-size:.98rem;max-width:440px}
 
-  .features{padding:30px 0 10px}
-  .features h2{text-align:center;font-size:clamp(1.5rem,4vw,2rem);font-weight:700;margin-bottom:8px}
-  .features .sub{text-align:center;color:var(--muted);margin-bottom:34px}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .card{position:relative;overflow:hidden;border-radius:var(--radius);padding:34px 24px;text-align:center;border:1px solid #ece8e1;transition:.18s;isolation:isolate}
-  .card::before{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center}
-  .card::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(255,255,255,.72)}
-  .card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.08)}
-  /* fondos genéricos por columna */
-  .bg1::before{background:
-     radial-gradient(120px 120px at 30% 20%, rgba(193,145,47,.28), transparent 70%),
-     repeating-radial-gradient(circle at 50% 120%, rgba(20,20,20,.05) 0 2px, transparent 2px 16px),
-     linear-gradient(135deg,#f7efe0,#efe7d8)}
-  .bg2::before{background:
-     radial-gradient(120px 120px at 70% 20%, rgba(80,110,140,.25), transparent 70%),
-     repeating-linear-gradient(90deg, rgba(20,20,20,.045) 0 2px, transparent 2px 14px),
-     linear-gradient(135deg,#eef1f4,#e4e9ee)}
-  .bg3::before{background:
-     radial-gradient(140px 140px at 50% 15%, rgba(193,145,47,.30), transparent 70%),
-     repeating-radial-gradient(circle at 50% 50%, rgba(20,20,20,.05) 0 2px, transparent 2px 18px),
-     linear-gradient(135deg,#f4ece0,#ece0cf)}
-  .card .art{width:120px;height:120px;margin:0 auto 18px}
-  .card h3{font-size:1.15rem;font-weight:700;margin-bottom:6px}
-  .card p{color:#4a4a4a;font-size:.96rem}
+  /* features */
+  .features{padding:60px 0 10px}
+  .features h2{text-align:center;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700}
+  .features .sub{text-align:center;color:var(--muted);margin:8px 0 36px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{position:relative;overflow:hidden;border-radius:var(--radius);min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid var(--line)}
+  .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.5s;z-index:0}
+  .card::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,8,10,0) 30%,rgba(8,8,10,.55) 60%,rgba(8,8,10,.95) 100%)}
+  .card:hover img{transform:scale(1.07)}
+  .card .c{position:relative;z-index:2;padding:24px}
+  .card h3{font-size:1.2rem;font-weight:700}
+  .card p{color:#cfcdca;font-size:.92rem;margin-top:6px}
+  .card .num{position:absolute;top:16px;left:16px;z-index:2;width:30px;height:30px;border-radius:50%;background:rgba(11,11,13,.6);backdrop-filter:blur(6px);border:1px solid var(--line);display:grid;place-items:center;font-family:'Space Grotesk';font-weight:700;font-size:.8rem;color:var(--accent2)}
 
-  footer{margin-top:56px;border-top:1px solid #eee;padding:34px 0 44px;text-align:center}
-  footer .mail{font-size:1.15rem;font-weight:600;text-decoration:none;border-bottom:2px solid var(--accent);padding-bottom:2px}
-  footer .small{color:var(--muted);font-size:.85rem;margin-top:16px}
+  /* cta band + footer */
+  .foot{margin-top:64px;border-top:1px solid var(--line);padding:46px 0 54px;text-align:center}
+  .foot .big{font-family:'Space Grotesk';font-size:clamp(1.4rem,3.5vw,2rem);font-weight:700}
+  .foot .mail{display:inline-block;margin-top:10px;font-size:1.15rem;font-weight:600;color:var(--accent2);border-bottom:2px solid var(--accent)}
+  .foot .small{color:var(--muted);font-size:.82rem;margin-top:20px}
 
-  svg{display:block;width:100%;height:100%}
-  .stroke{fill:none;stroke:var(--ink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
-  .stroke-thin{fill:none;stroke:var(--ink);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
-
-  @media(max-width:760px){
-    .grid{grid-template-columns:1fr;max-width:360px;margin:0 auto}
-    .steps{flex-direction:column;align-items:center;gap:10px}
+  @media(max-width:820px){
+    .hero-in{grid-template-columns:1fr;gap:28px}
+    .shot{order:-1}
+    .grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}
+    .steps{flex-direction:column;align-items:flex-start;max-width:320px;margin-left:auto;margin-right:auto}
+    .brand span{display:none}
   }
 </style>
 </head>
 <body>
 
-<div class="lang">
-  <button data-lang="es" onclick="setLang('es')">ES</button>
-  <button data-lang="en" onclick="setLang('en')">EN</button>
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">
+      <span class="badge">
+        <svg viewBox="0 0 200 200" width="44" height="44">
+          <circle cx="100" cy="100" r="97" fill="#141414"/>
+          <circle cx="100" cy="100" r="88" fill="none" stroke="#fff" stroke-width="3"/>
+          <path id="t" d="M46 100 a54 54 0 0 1 108 0" fill="none"/>
+          <text font-family="Space Grotesk,sans-serif" font-weight="700" font-size="21" fill="#fff"><textPath href="#t" startOffset="50%" text-anchor="middle">Tap2Sound</textPath></text>
+          <path d="M85 82 q15 -12 30 0M79 75 q21 -18 42 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+          <rect x="86" y="92" width="30" height="50" rx="6" fill="none" stroke="#fff" stroke-width="4"/>
+          <circle cx="101" cy="135" r="2.4" fill="#fff"/>
+          <path id="b" d="M52 116 a48 48 0 0 0 96 0" fill="none"/>
+          <text font-family="Space Grotesk,sans-serif" font-weight="700" font-size="16" letter-spacing="3" fill="#fff"><textPath href="#b" startOffset="50%" text-anchor="middle">TAP HERE</textPath></text>
+        </svg>
+      </span>
+      <span>Tap2Sound</span>
+    </a>
+    <div class="nav-right">
+      <div class="lang">
+        <button data-lang="es" onclick="setLang('es')">ES</button>
+        <button data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+      <a class="btn btn-gold" id="buy" href="#comprar" data-i18n="buy">Comprar en Amazon</a>
+    </div>
+  </div>
 </div>
 
-<header>
-  <div class="logo" aria-label="Tap2Sound">
-    <svg viewBox="0 0 200 200" role="img">
-      <circle cx="100" cy="100" r="95" class="stroke" stroke-width="6"/>
-      <circle cx="100" cy="100" r="82" class="stroke" stroke-width="3"/>
-      <path d="M84 70 q16 -14 32 0" class="stroke-thin"/>
-      <path d="M78 62 q22 -20 44 0" class="stroke-thin"/>
-      <path d="M72 54 q28 -26 56 0" class="stroke-thin"/>
-      <rect x="84" y="82" width="32" height="54" rx="6" class="stroke-thin"/>
-      <circle cx="100" cy="127" r="2.5" fill="var(--ink)"/>
-      <text x="100" y="46" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="21" fill="#141414">Tap2Sound</text>
-      <path id="arc" d="M50 150 a52 52 0 0 0 100 0" fill="none"/>
-      <text font-family="Poppins,sans-serif" font-weight="700" font-size="15" letter-spacing="2" fill="#141414">
-        <textPath href="#arc" startOffset="50%" text-anchor="middle">TAP HERE</textPath>
-      </text>
-    </svg>
-  </div>
-</header>
+<a id="top"></a>
 
-<section class="hero wrap">
-  <h1 data-i18n="h1">Toca. Y <span data-i18n="h1b">suena</span>.</h1>
-  <p data-i18n="lead">Acerca tu móvil a la etiqueta Tap2Sound y conéctate al instante con tu altavoz o auriculares Bluetooth. Sin menús, sin buscar dispositivos: un toque y listo.</p>
-
-  <div class="cta">
-    <a class="btn btn-primary" id="buy" href="#comprar" data-i18n="buy">Comprar en Amazon</a>
-    <a class="btn btn-ghost" href="#como" data-i18n="how">Cómo funciona</a>
+<!-- HERO -->
+<section class="hero">
+  <div class="glow"></div>
+  <div class="hero-in wrap">
+    <div>
+      <span class="kicker" data-i18n="kicker">NFC · Bluetooth · un toque</span>
+      <h1 data-i18n="h1">Toca. Y <span>suena</span>.</h1>
+      <p data-i18n="lead">Acerca tu móvil a la etiqueta Tap2Sound y conéctate al instante con tu altavoz o auriculares Bluetooth. Sin menús, sin buscar dispositivos.</p>
+      <div class="cta">
+        <a class="btn btn-gold" href="#comprar" data-i18n="buy2">Comprar en Amazon</a>
+        <a class="btn btn-ghost" href="#como" data-i18n="how">Cómo funciona</a>
+      </div>
+    </div>
+    <div class="shot">
+      <img src="img/env-portable.jpg" alt="Altavoz Bluetooth Tap2Sound" />
+      <span class="ring">● Tap &amp; play</span>
+    </div>
   </div>
 
-  <div class="steps" id="como">
+  <div class="steps wrap" id="como">
     <div class="step"><span class="dot">1</span><span data-i18n="s1">Pega la <b>etiqueta NFC</b> en tu altavoz</span></div>
     <div class="step"><span class="dot">2</span><span data-i18n="s2">Empareja una vez con la <b>app</b></span></div>
     <div class="step"><span class="dot">3</span><span data-i18n="s3">A partir de ahí, <b>toca y suena</b></span></div>
   </div>
 </section>
 
-<section class="features wrap">
-  <h2 data-i18n="fh">Un toque, tres formas de escuchar</h2>
-  <p class="sub" data-i18n="fsub">La misma etiqueta, cualquier dispositivo Bluetooth.</p>
-
-  <div class="grid">
-    <div class="card bg1">
-      <div class="art">
-        <svg viewBox="0 0 120 120">
-          <rect x="24" y="34" width="72" height="60" rx="10" class="stroke"/>
-          <circle cx="60" cy="70" r="17" class="stroke-thin"/><circle cx="60" cy="70" r="6" class="stroke-thin"/>
-          <circle cx="38" cy="46" r="3" fill="var(--ink)"/>
-          <path d="M78 40 v14" class="stroke-thin"/><path d="M84 42 q6 5 0 10" class="stroke-thin"/>
-        </svg>
+<!-- PROMO -->
+<section class="wrap">
+  <div class="promo">
+    <div class="promo-in">
+      <img src="img/promo-speakers.jpg" alt="Promoción altavoces" />
+      <div class="promo-ov"></div>
+      <div class="content">
+        <span class="pill" data-i18n="promotag">PROMO</span>
+        <h3 data-i18n="promoh">Por cada 6 <b>tags</b>, un altavoz de <b>regalo</b> 🎁</h3>
+        <p data-i18n="promop">Equipa toda tu casa con Tap2Sound y llévate un altavoz Bluetooth de regalo.</p>
       </div>
-      <h3 data-i18n="c1t">Altavoz portátil</h3>
-      <p data-i18n="c1p">Llévatelo a cualquier sitio. Un toque y tu música empieza a sonar allá donde estés.</p>
-    </div>
-
-    <div class="card bg2">
-      <div class="art">
-        <svg viewBox="0 0 120 120">
-          <path d="M28 66 v-6 a32 32 0 0 1 64 0 v6" class="stroke"/>
-          <rect x="22" y="64" width="16" height="26" rx="6" class="stroke"/>
-          <rect x="82" y="64" width="16" height="26" rx="6" class="stroke"/>
-          <path d="M100 74 q7 4 0 10" class="stroke-thin"/><path d="M106 70 q12 8 0 18" class="stroke-thin"/>
-        </svg>
-      </div>
-      <h3 data-i18n="c2t">Auriculares</h3>
-      <p data-i18n="c2p">Tu sonido, solo para ti. Conéctate a tus cascos Bluetooth con el mismo gesto.</p>
-    </div>
-
-    <div class="card bg3">
-      <div class="art">
-        <svg viewBox="0 0 120 120">
-          <rect x="40" y="20" width="40" height="82" rx="8" class="stroke"/>
-          <circle cx="60" cy="44" r="9" class="stroke-thin"/>
-          <circle cx="60" cy="78" r="15" class="stroke-thin"/><circle cx="60" cy="78" r="5" class="stroke-thin"/>
-          <path d="M92 40 q10 20 0 40" class="stroke-thin"/><path d="M28 40 q-10 20 0 40" class="stroke-thin"/>
-        </svg>
-      </div>
-      <h3 data-i18n="c3t">Equipo de casa</h3>
-      <p data-i18n="c3p">Del salón a la fiesta. Tu equipo de sonido potente, listo con un solo toque.</p>
     </div>
   </div>
 </section>
 
-<footer id="comprar">
+<!-- FEATURES -->
+<section class="features wrap">
+  <h2 data-i18n="fh">Un toque, tres formas de escuchar</h2>
+  <p class="sub" data-i18n="fsub">La misma etiqueta, cualquier dispositivo Bluetooth.</p>
+  <div class="grid">
+    <div class="card">
+      <img src="img/portable.jpg" alt="" />
+      <span class="num">1</span>
+      <div class="c"><h3 data-i18n="c1t">Altavoz portátil</h3><p data-i18n="c1p">Llévatelo a cualquier sitio. Un toque y tu música suena allá donde estés.</p></div>
+    </div>
+    <div class="card">
+      <img src="img/headphones.jpg" alt="" />
+      <span class="num">2</span>
+      <div class="c"><h3 data-i18n="c2t">Auriculares</h3><p data-i18n="c2p">Tu sonido, solo para ti. Conéctate a tus cascos Bluetooth con el mismo gesto.</p></div>
+    </div>
+    <div class="card">
+      <img src="img/env-home.jpg" alt="" />
+      <span class="num">3</span>
+      <div class="c"><h3 data-i18n="c3t">Equipo de casa</h3><p data-i18n="c3p">Del salón a la fiesta. Tu equipo de sonido, listo con un solo toque.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot" id="comprar">
   <div class="wrap">
-    <p style="color:var(--muted);margin-bottom:8px" data-i18n="cont">¿Preguntas o pedidos?</p>
+    <div class="big" data-i18n="ftitle">¿Listo para tocar y sonar?</div>
+    <p style="color:var(--muted);margin-top:6px" data-i18n="cont">Escríbenos para pedidos o dudas</p>
     <a class="mail" href="mailto:info@tap2sound.com">info@tap2sound.com</a>
     <p class="small">© <span id="y"></span> Tap2Sound · <span data-i18n="tag">Toca y suena</span></p>
   </div>
 </footer>
 
 <script>
-const I18N = {
-  es:{title:"Tap2Sound — Toca y suena",
-    h1:'Toca. Y <span data-i18n="h1b">suena</span>.',
-    lead:"Acerca tu móvil a la etiqueta Tap2Sound y conéctate al instante con tu altavoz o auriculares Bluetooth. Sin menús, sin buscar dispositivos: un toque y listo.",
-    buy:"Comprar en Amazon",how:"Cómo funciona",
-    s1:"Pega la <b>etiqueta NFC</b> en tu altavoz",s2:"Empareja una vez con la <b>app</b>",s3:"A partir de ahí, <b>toca y suena</b>",
-    fh:"Un toque, tres formas de escuchar",fsub:"La misma etiqueta, cualquier dispositivo Bluetooth.",
-    c1t:"Altavoz portátil",c1p:"Llévatelo a cualquier sitio. Un toque y tu música empieza a sonar allá donde estés.",
-    c2t:"Auriculares",c2p:"Tu sonido, solo para ti. Conéctate a tus cascos Bluetooth con el mismo gesto.",
-    c3t:"Equipo de casa",c3p:"Del salón a la fiesta. Tu equipo de sonido potente, listo con un solo toque.",
-    cont:"¿Preguntas o pedidos?",tag:"Toca y suena"},
-  en:{title:"Tap2Sound — Tap and it plays",
-    h1:'Tap. And it <span data-i18n="h1b">plays</span>.',
-    lead:"Hold your phone to the Tap2Sound tag and connect instantly to your Bluetooth speaker or headphones. No menus, no device hunting — one tap and you're in.",
-    buy:"Buy on Amazon",how:"How it works",
-    s1:"Stick the <b>NFC tag</b> on your speaker",s2:"Pair once with the <b>app</b>",s3:"From then on, <b>tap and play</b>",
-    fh:"One tap, three ways to listen",fsub:"The same tag, any Bluetooth device.",
-    c1t:"Portable speaker",c1p:"Take it anywhere. One tap and your music starts playing wherever you are.",
-    c2t:"Headphones",c2p:"Your sound, just for you. Connect to your Bluetooth headphones with the same gesture.",
-    c3t:"Home system",c3p:"From the living room to the party. Your powerful sound system, ready with a single tap.",
-    cont:"Questions or orders?",tag:"Tap and it plays"}
+const I18N={
+ es:{title:"Tap2Sound — Toca y suena",kicker:"NFC · Bluetooth · un toque",
+   h1:'Toca. Y <span>suena</span>.',
+   lead:"Acerca tu móvil a la etiqueta Tap2Sound y conéctate al instante con tu altavoz o auriculares Bluetooth. Sin menús, sin buscar dispositivos.",
+   buy:"Comprar en Amazon",buy2:"Comprar en Amazon",how:"Cómo funciona",
+   promotag:"PROMO",promoh:'Por cada 6 <b>tags</b>, un altavoz de <b>regalo</b> 🎁',promop:"Equipa toda tu casa con Tap2Sound y llévate un altavoz Bluetooth de regalo.",
+   s1:"Pega la <b>etiqueta NFC</b> en tu altavoz",s2:"Empareja una vez con la <b>app</b>",s3:"A partir de ahí, <b>toca y suena</b>",
+   fh:"Un toque, tres formas de escuchar",fsub:"La misma etiqueta, cualquier dispositivo Bluetooth.",
+   c1t:"Altavoz portátil",c1p:"Llévatelo a cualquier sitio. Un toque y tu música suena allá donde estés.",
+   c2t:"Auriculares",c2p:"Tu sonido, solo para ti. Conéctate a tus cascos Bluetooth con el mismo gesto.",
+   c3t:"Equipo de casa",c3p:"Del salón a la fiesta. Tu equipo de sonido, listo con un solo toque.",
+   ftitle:"¿Listo para tocar y sonar?",cont:"Escríbenos para pedidos o dudas",tag:"Toca y suena"},
+ en:{title:"Tap2Sound — Tap and it plays",kicker:"NFC · Bluetooth · one tap",
+   h1:'Tap. And it <span>plays</span>.',
+   lead:"Hold your phone to the Tap2Sound tag and connect instantly to your Bluetooth speaker or headphones. No menus, no device hunting.",
+   buy:"Buy on Amazon",buy2:"Buy on Amazon",how:"How it works",
+   promotag:"PROMO",promoh:'Every 6 <b>tags</b>, a <b>free</b> speaker 🎁',promop:"Equip your whole home with Tap2Sound and get a Bluetooth speaker for free.",
+   s1:"Stick the <b>NFC tag</b> on your speaker",s2:"Pair once with the <b>app</b>",s3:"From then on, <b>tap and play</b>",
+   fh:"One tap, three ways to listen",fsub:"The same tag, any Bluetooth device.",
+   c1t:"Portable speaker",c1p:"Take it anywhere. One tap and your music plays wherever you are.",
+   c2t:"Headphones",c2p:"Your sound, just for you. Connect to your Bluetooth headphones with the same gesture.",
+   c3t:"Home system",c3p:"From the living room to the party. Your sound system, ready with a single tap.",
+   ftitle:"Ready to tap and play?",cont:"Reach us for orders or questions",tag:"Tap and it plays"}
 };
-function setLang(l){
-  const d=I18N[l]||I18N.es;
-  document.documentElement.lang=l;
-  document.title=d.title;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n');
-    if(k==='title'||k==='desc'||k==='h1b')return;
-    if(d[k]!=null) el.innerHTML=d[k];
-  });
-  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
-  try{localStorage.setItem('t2s_lang',l)}catch(e){}
-}
-(function(){
-  let l='es';
-  try{l=localStorage.getItem('t2s_lang')||( (navigator.language||'es').slice(0,2)==='en'?'en':'es')}catch(e){}
-  setLang(I18N[l]?l:'es');
-  document.getElementById('y').textContent=new Date().getFullYear();
-})();
+function setLang(l){const d=I18N[l]||I18N.es;document.documentElement.lang=l;document.title=d.title;
+ document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(k==='title')return;if(d[k]!=null)el.innerHTML=d[k];});
+ document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+ try{localStorage.setItem('t2s_lang',l)}catch(e){}}
+(function(){let l='es';try{l=localStorage.getItem('t2s_lang')||((navigator.language||'es').slice(0,2)==='en'?'en':'es')}catch(e){}
+ setLang(I18N[l]?l:'es');document.getElementById('y').textContent=new Date().getFullYear();})();
 </script>
 </body>
 </html>
