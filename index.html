@@ -214,7 +214,7 @@
       <textarea name="message" data-i18n-ph="phmsg" placeholder="Tu mensaje" required></textarea>
       <button type="submit" data-i18n="send">Enviar mensaje</button>
     </form>
-    <p class="small">© <span id="y"></span> Tap2Sound · <span data-i18n="tag">Toca y suena</span></p>
+    <p class="small">© <span id="y"></span> Tap2Sound · <span data-i18n="tag">Toca y suena</span> · <a href="privacy-policy.html" data-i18n="privacylink">Privacidad</a></p>
   </div>
 </footer>
 
@@ -230,7 +230,7 @@ const I18N={
    c1t:"Altavoz portátil",c1p:"Llévatelo a cualquier sitio. Un toque y tu música suena allá donde estés.",
    c2t:"Auriculares",c2p:"Tu sonido, solo para ti. Conéctate a tus cascos Bluetooth con el mismo gesto.",
    c3t:"Equipo de casa",c3p:"Del salón a la fiesta. Tu equipo de sonido, listo con un solo toque.",
-   ftitle:"¿Listo para tocar y sonar?",cont:"Escríbenos para pedidos o dudas",send:"Enviar mensaje",phname:"Nombre",phemail:"Tu email",phmsg:"Tu mensaje",tag:"Toca y suena"},
+   ftitle:"¿Listo para tocar y sonar?",cont:"Escríbenos para pedidos o dudas",send:"Enviar mensaje",phname:"Nombre",phemail:"Tu email",phmsg:"Tu mensaje",tag:"Toca y suena",privacylink:"Privacidad"},
  en:{title:"Tap2Sound — Tap and it plays",kicker:"NFC · Bluetooth · one tap",
    h1:'Tap. And it <span>plays</span>.',
    lead:"Hold your phone to the Tap2Sound tag and connect instantly to your Bluetooth speaker or headphones. No menus, no device hunting.",
@@ -241,7 +241,7 @@ const I18N={
    c1t:"Portable speaker",c1p:"Take it anywhere. One tap and your music plays wherever you are.",
    c2t:"Headphones",c2p:"Your sound, just for you. Connect to your Bluetooth headphones with the same gesture.",
    c3t:"Home system",c3p:"From the living room to the party. Your sound system, ready with a single tap.",
-   ftitle:"Ready to tap and play?",cont:"Reach us for orders or questions",send:"Send message",phname:"Name",phemail:"Your email",phmsg:"Your message",tag:"Tap and it plays"}
+   ftitle:"Ready to tap and play?",cont:"Reach us for orders or questions",send:"Send message",phname:"Name",phemail:"Your email",phmsg:"Your message",tag:"Tap and it plays",privacylink:"Privacy"}
 };
 function setLang(l){const d=I18N[l]||I18N.es;document.documentElement.lang=l;document.title=d.title;
  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(k==='title')return;if(d[k]!=null)el.innerHTML=d[k];});
