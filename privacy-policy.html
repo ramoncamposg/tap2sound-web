@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-i18n="title">Tap2Sound — Política de Privacidad</title>
+<meta name="description" content="Política de privacidad de Tap2Sound: datos que recopilamos, cómo los usamos y tus derechos." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+--bg:#0b0b0d;--bg2:#141418;--card:#17171c;--ink:#f3f1ec;--muted:#a4a2a0;
+--accent:#d1a24a;--accent2:#e9c37e;--line:#26262c;--maxw:860px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2{font-family:'Space Grotesk','Poppins',sans-serif;letter-spacing:-.5px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+a{color:var(--accent2)}
+.nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:rgba(11,11,13,.72);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;max-width:var(--maxw);margin:0 auto}
+.brand{font-family:'Space Grotesk';font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none}
+.lang{display:flex;gap:3px}
+.lang button{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:100px;padding:5px 11px;cursor:pointer;font-family:inherit;font-weight:600;font-size:.8rem}
+.lang button.active{background:var(--ink);color:#111;border-color:var(--ink)}
+main{padding:50px 0 80px}
+h1{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:6px}
+.updated{color:var(--muted);font-size:.9rem;margin-bottom:36px}
+h2{font-size:1.25rem;margin:34px 0 10px;color:var(--accent2)}
+p,li{color:#d7d5d2;font-size:.98rem}
+ul{margin:10px 0 10px 22px}
+li{margin-bottom:6px}
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+
+<div class="nav">
+<div class="nav-in">
+<a class="brand" href="index.html">← Tap2Sound</a>
+<div class="lang">
+<button data-lang="es" onclick="setLang('es')">ES</button>
+<button data-lang="en" onclick="setLang('en')">EN</button>
+</div>
+</div>
+</div>
+
+<main class="wrap">
+<h1 data-i18n="h1">Política de Privacidad</h1>
+<p class="updated" data-i18n="updated">Última actualización: 23 de julio de 2026</p>
+
+<section data-i18n="intro"></section>
+<section data-i18n="controller"></section>
+<section data-i18n="data"></section>
+<section data-i18n="purpose"></section>
+<section data-i18n="legal"></section>
+<section data-i18n="sharing"></section>
+<section data-i18n="retention"></section>
+<section data-i18n="rights"></section>
+<section data-i18n="cookies"></section>
+<section data-i18n="children"></section>
+<section data-i18n="changes"></section>
+<section data-i18n="contact"></section>
+</main>
+
+<footer>
+<div class="wrap">© <span id="y"></span> Tap2Sound</div>
+</footer>
+
+<script>
+const I18N = {
+es: {
+title: "Tap2Sound — Política de Privacidad",
+h1: "Política de Privacidad",
+updated: "Última actualización: 23 de julio de 2026",
+intro: "<h2>1. Introducción</h2><p>Esta Política de Privacidad explica qué información recopila Tap2Sound (la app y este sitio web), cómo la usamos y qué derechos tienes sobre tus datos. Al usar la app o este sitio, aceptas las practicas descritas aqui.</p>",
+controller: "<h2>2. Responsable del tratamiento</h2><p>El responsable del tratamiento es Ramón Campos, desarrollador de Tap2Sound. Puedes contactar en <a href=\"mailto:ramoncamposg@gmail.com\">ramoncamposg@gmail.com</a> para cualquier consulta sobre esta politica.</p>",
+data: "<h2>3. Datos que recopilamos</h2><p><strong>A traves de la app Android:</strong> Tap2Sound solicita permisos de NFC y Bluetooth para leer las etiquetas y emparejar dispositivos de sonido. La app no recopila ubicacion, contactos ni identificadores publicitarios, y no envia datos personales a nuestros servidores: la configuracion se guarda localmente en tu dispositivo.</p><p><strong>A traves de este sitio web:</strong> si usas el formulario de contacto, recopilamos el nombre, el email y el mensaje que nos envias, unicamente para poder responderte.</p>",
+purpose: "<h2>4. Finalidad del tratamiento</h2><ul><li>Permitir el funcionamiento basico de la app (lectura NFC y conexion Bluetooth).</li><li>Responder a tus consultas enviadas por el formulario de contacto.</li><li>Mantener y mejorar la app y el sitio web.</li></ul>",
+legal: "<h2>5. Base legal</h2><p>Tratamos tus datos de contacto en base a tu consentimiento, otorgado al enviar el formulario. Los permisos de la app se solicitan por ser necesarios para la funcionalidad para la que fue disenada.</p>",
+sharing: "<h2>6. Comparticion con terceros</h2><p>No vendemos ni compartimos tus datos personales con fines publicitarios. Usamos los siguientes proveedores para operar el sitio y la app:</p><ul><li><strong>FormSubmit</strong>, para procesar los mensajes del formulario de contacto.</li><li><strong>Google Fonts</strong>, para cargar las tipografias del sitio.</li><li><strong>GitHub Pages</strong>, para alojar este sitio web.</li></ul><p>Estos proveedores pueden procesar datos tecnicos basicos conforme a sus propias politicas de privacidad.</p>",
+retention: "<h2>7. Conservacion de datos</h2><p>Los mensajes del formulario de contacto se conservan solo el tiempo necesario para atender tu consulta. Los datos de configuracion de la app permanecen en tu dispositivo hasta que la desinstales o borres sus datos.</p>",
+rights: "<h2>8. Tus derechos</h2><p>Puedes solicitar el acceso, la rectificacion o la eliminacion de tus datos, asi como oponerte a su tratamiento, escribiendo a <a href=\"mailto:ramoncamposg@gmail.com\">ramoncamposg@gmail.com</a>.</p>",
+cookies: "<h2>9. Cookies y tecnologias similares</h2><p>Este sitio no utiliza cookies de seguimiento ni publicidad. Guardamos tu preferencia de idioma en el almacenamiento local del navegador, solo para recordar tu eleccion en proximas visitas.</p>",
+children: "<h2>10. Menores de edad</h2><p>Tap2Sound no esta dirigida a menores de 14 anos y no recopilamos conscientemente datos de menores. Si crees que un menor nos ha facilitado datos, contactanos para eliminarlos.</p>",
+changes: "<h2>11. Cambios en esta politica</h2><p>Podemos actualizar esta politica ocasionalmente. Publicaremos los cambios en esta misma pagina junto con la fecha de la ultima actualizacion.</p>",
+contact: "<h2>12. Contacto</h2><p>Si tienes preguntas sobre esta Politica de Privacidad, escribenos a <a href=\"mailto:ramoncamposg@gmail.com\">ramoncamposg@gmail.com</a>.</p>"
+},
+en: {
+title: "Tap2Sound — Privacy Policy",
+h1: "Privacy Policy",
+updated: "Last updated: July 23, 2026",
+intro: "<h2>1. Introduction</h2><p>This Privacy Policy explains what information Tap2Sound (the app and this website) collects, how we use it, and what rights you have over your data. By using the app or this site, you accept the practices described here.</p>",
+controller: "<h2>2. Data Controller</h2><p>The data controller is Ramon Campos, developer of Tap2Sound. You can reach us at <a href=\"mailto:ramoncamposg@gmail.com\">ramoncamposg@gmail.com</a> for any question about this policy.</p>",
+data: "<h2>3. Information We Collect</h2><p><strong>Through the Android app:</strong> Tap2Sound requests NFC and Bluetooth permissions to read tags and pair sound devices. The app does not collect location, contacts, or advertising identifiers, and does not send personal data to our servers: settings are stored locally on your device.</p><p><strong>Through this website:</strong> if you use the contact form, we collect the name, email, and message you send us, solely to reply to you.</p>",
+purpose: "<h2>4. Purpose of Processing</h2><ul><li>Enable the basic functioning of the app (NFC reading and Bluetooth connection).</li><li>Respond to inquiries sent through the contact form.</li><li>Maintain and improve the app and website.</li></ul>",
+legal: "<h2>5. Legal Basis</h2><p>We process your contact data based on your consent, given when you submit the form. App permissions are requested because they are necessary for the functionality the app was designed for.</p>",
+sharing: "<h2>6. Third-Party Sharing</h2><p>We do not sell or share your personal data for advertising purposes. We use the following providers to operate the site and the app:</p><ul><li><strong>FormSubmit</strong>, to process contact form messages.</li><li><strong>Google Fonts</strong>, to load the site typography.</li><li><strong>GitHub Pages</strong>, to host this website.</li></ul><p>These providers may process basic technical data according to their own privacy policies.</p>",
+retention: "<h2>7. Data Retention</h2><p>Contact form messages are kept only as long as necessary to handle your inquiry. App settings remain stored on your device until you uninstall the app or clear its data.</p>",
+rights: "<h2>8. Your Rights</h2><p>You may request access, correction, or deletion of your data, and object to its processing, by writing to <a href=\"mailto:ramoncamposg@gmail.com\">ramoncamposg@gmail.com</a>.</p>",
+cookies: "<h2>9. Cookies and Similar Technologies</h2><p>This site does not use tracking or advertising cookies. We store your language preference in your browser local storage, only to remember your choice on future visits.</p>",
+children: "<h2>10. Children\u2019s Privacy</h2><p>Tap2Sound is not directed at children under 14 and we do not knowingly collect data from minors. If you believe a minor has provided us with data, please contact us so we can remove it.</p>",
+changes: "<h2>11. Changes to This Policy</h2><p>We may update this policy occasionally. Any changes will be posted on this same page along with the last updated date.</p>",
+contact: "<h2>12. Contact</h2><p>If you have questions about this Privacy Policy, write to us at <a href=\"mailto:ramoncamposg@gmail.com\">ramoncamposg@gmail.com</a>.</p>"
+}
+};
+function setLang(l){
+const d = I18N[l] || I18N.es;
+document.documentElement.lang = l;
+document.title = d.title;
+document.querySelectorAll('[data-i18n]').forEach(function(el){
+const k = el.getAttribute('data-i18n');
+if (k === 'title') return;
+if (d[k] != null) el.innerHTML = d[k];
+});
+document.querySelectorAll('.lang button').forEach(function(b){
+b.classList.toggle('active', b.dataset.lang === l);
+});
+try { localStorage.setItem('t2s_lang', l); } catch(e) {}
+}
+(function(){
+let l = 'es';
+try { l = localStorage.getItem('t2s_lang') || ((navigator.language||'es').slice(0,2)==='en' ? 'en':'es'); } catch(e) {}
+setLang(I18N[l] ? l : 'es');
+document.getElementById('y').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
