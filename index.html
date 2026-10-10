@@ -80,6 +80,35 @@ a{color:inherit;text-decoration:none}
 .card p{color:#cfcdca;font-size:.92rem;margin-top:6px}
 .card .num{position:absolute;top:16px;left:16px;z-index:2;width:30px;height:30px;border-radius:50%;background:rgba(11,11,13,.6);backdrop-filter:blur(6px);border:1px solid var(--line);display:grid;place-items:center;font-family:'Space Grotesk';font-weight:700;font-size:.8rem;color:var(--accent2)}
 
+/* blister */
+.blister{padding:60px 0 10px}
+.blister-in{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:34px}
+.stage{position:relative;perspective:1000px;display:grid;place-items:center;padding:14px}
+.stage::before{content:"";position:absolute;inset:6% 4%;background:radial-gradient(closest-side,rgba(209,162,74,.38),transparent 72%);filter:blur(26px)}
+.tilt{position:relative;width:100%;max-width:var(--tw,340px);border-radius:14px;transform:rotateY(-14deg) rotateX(4deg) rotate(-2deg);transition:transform .5s;box-shadow:-18px 30px 50px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.07)}
+.tilt-r{transform:rotateY(12deg) rotateX(3deg) rotate(2deg);box-shadow:18px 30px 50px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.07)}
+.tilt img{display:block;width:100%;height:auto;border-radius:14px}
+.tilt::after{content:"";position:absolute;inset:0;border-radius:14px;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.24) 0%,rgba(255,255,255,0) 38%,rgba(0,0,0,.2) 100%)}
+.stage:hover .tilt{transform:none}
+.chips{position:absolute;left:14px;right:14px;bottom:12px;display:flex;justify-content:space-between;z-index:2}
+.chips span{background:rgba(11,11,13,.88);border:1px solid var(--line);border-radius:100px;padding:5px 13px;font-size:.76rem;font-weight:600;color:var(--accent2)}
+.tagsec{padding:60px 0 10px}
+.tag-in{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.tagsec h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:700;margin:14px 0 8px}
+.tagsec h2 span{background:linear-gradient(120deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tagsec .lead{color:var(--muted);max-width:480px}
+.tsteps{display:grid;gap:18px;margin-top:26px}
+.tstep{display:flex;gap:14px;align-items:flex-start}
+.tstep h3{font-size:1.1rem;font-weight:700}
+.tstep p{color:var(--muted);font-size:.93rem;margin-top:2px}
+.blister h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;margin:14px 0 8px}
+.blister h2 span{background:linear-gradient(120deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.blister p{color:var(--muted);max-width:460px}
+.blister .price{display:flex;align-items:baseline;gap:10px;margin:18px 0 22px}
+.blister .price b{font-family:'Space Grotesk';font-size:2.8rem;line-height:1;color:var(--accent2)}
+.blister .price span{color:var(--muted);font-size:.95rem}
+.blister .note{font-size:.82rem;margin-top:14px}
+
 /* cta band + footer */
 .foot{margin-top:64px;border-top:1px solid var(--line);padding:46px 0 54px;text-align:center}
 .foot .big{font-family:'Space Grotesk';font-size:clamp(1.4rem,3.5vw,2rem);font-weight:700}
@@ -98,6 +127,13 @@ a{color:inherit;text-decoration:none}
 .shot{order:-1}
 .grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}
 .steps{flex-direction:column;align-items:flex-start;max-width:320px;margin-left:auto;margin-right:auto}
+.blister-in{grid-template-columns:1fr;gap:26px;padding:24px;text-align:center}
+.blister p{margin:0 auto}
+.blister .price{justify-content:center}
+.tag-in{grid-template-columns:1fr;gap:28px}
+.tag-in .stage{order:-1}
+.tilt{transform:rotateY(-8deg) rotateX(3deg) rotate(-1.5deg)}
+.tilt-r{transform:rotateY(8deg) rotateX(3deg) rotate(1.5deg)}
 .brand span{display:none}
 }
 </style>
@@ -118,7 +154,7 @@ a{color:inherit;text-decoration:none}
 <button data-lang="es" onclick="setLang('es')">ES</button>
 <button data-lang="en" onclick="setLang('en')">EN</button>
 </div>
-<a class="btn btn-gold" id="buy" href="#comprar" data-i18n="buy">Comprar en Amazon</a>
+<a class="btn btn-gold" id="buy" href="https://play.google.com/store/apps/details?id=com.speakerroom.tap2sound" target="_blank" rel="noopener" data-i18n="buy">Descargar app</a>
 </div>
 </div>
 </div>
@@ -134,7 +170,7 @@ a{color:inherit;text-decoration:none}
 <h1 data-i18n="h1">Toca. Y <span>suena</span>.</h1>
 <p data-i18n="lead">Acerca tu móvil a la etiqueta Tap2Sound y conéctate al instante con tu altavoz o auriculares Bluetooth. Sin menús, sin buscar dispositivos.</p>
 <div class="cta">
-<a class="btn btn-gold" href="#comprar" data-i18n="buy2">Comprar en Amazon</a>
+<a class="btn btn-gold" href="https://play.google.com/store/apps/details?id=com.speakerroom.tap2sound" target="_blank" rel="noopener" data-i18n="buy2">Descargar en Google Play</a>
 <a class="btn btn-ghost" href="#como" data-i18n="how">Cómo funciona</a>
 </div>
 </div>
@@ -159,7 +195,7 @@ a{color:inherit;text-decoration:none}
 <div class="promo-ov"></div>
 <div class="content">
 <span class="pill" data-i18n="promotag">PROMO</span>
-<h3 data-i18n="promoh">Por cada 6 <b>tags</b>, un altavoz de <b>regalo</b> 🎁</h3>
+<h3 data-i18n="promoh">Por cada 7 <b>tags</b>, un altavoz de <b>regalo</b> 🎁</h3>
 <p data-i18n="promop">Equipa toda tu casa con Tap2Sound y llévate un altavoz Bluetooth de regalo.</p>
 </div>
 </div>
@@ -189,6 +225,43 @@ a{color:inherit;text-decoration:none}
 </div>
 </section>
 
+<!-- TAG DETAIL -->
+<section class="tagsec wrap" id="etiqueta">
+<div class="tag-in">
+<div>
+<span class="pill" data-i18n="tgpill">LA ETIQUETA</span>
+<h2 data-i18n="tgh">Engancha. Sincroniza. <span>Disfruta.</span></h2>
+<p class="lead" data-i18n="tgp">Cada etiqueta Tap2Sound lleva adhesivo 3M en el reverso: pégala en tu altavoz, tus auriculares o tu coche.</p>
+<div class="tsteps">
+<div class="tstep"><span class="dot">1</span><div><h3 data-i18n="tg1t">Engancha</h3><p data-i18n="tg1p">Pega la etiqueta en tu dispositivo; el adhesivo del reverso la fija.</p></div></div>
+<div class="tstep"><span class="dot">2</span><div><h3 data-i18n="tg2t">Sincroniza</h3><p data-i18n="tg2p">Empareja la etiqueta una sola vez desde la app.</p></div></div>
+<div class="tstep"><span class="dot">3</span><div><h3 data-i18n="tg3t">Disfruta</h3><p data-i18n="tg3p">Acerca el móvil y suena. Un toque y listo.</p></div></div>
+</div>
+</div>
+<div class="stage">
+<div class="tilt tilt-r" style="--tw:460px">
+<img src="img/tag-gold.webp" alt="Etiqueta NFC Tap2Sound: anverso y reverso con adhesivo 3M" width="1254" height="1254" loading="lazy" />
+<div class="chips"><span data-i18n="tgfront">Anverso</span><span data-i18n="tgback">Reverso</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- BLISTER -->
+<section class="blister wrap" id="blister">
+<div class="blister-in">
+<div class="stage"><div class="tilt"><img src="img/blister.png" alt="Blister Tap2Sound con 3 etiquetas NFC" width="565" height="697" loading="lazy" /></div></div>
+<div>
+<span class="pill" data-i18n="blpill">BLISTER</span>
+<h2 data-i18n="blh">Pide tu <span>blister</span></h2>
+<p data-i18n="blp">Un cartón con 3 etiquetas NFC Tap2Sound listas para pegar: altavoz, auriculares y coche.</p>
+<div class="price"><b data-i18n="blprice">15 €</b><span data-i18n="blper">+ 5 € de envío · blister de 3 NFC</span></div>
+<a class="btn btn-gold" href="https://paypal.me/tap2sound/20EUR" target="_blank" rel="noopener" data-i18n="blbtn">Pedir mi blister</a>
+<p class="note" data-i18n="blnote">Tras el pago, envíanos tu dirección de envío con el formulario de abajo.</p>
+</div>
+</div>
+</section>
+
 <!-- FOOTER -->
 <footer class="foot" id="comprar">
 <div class="wrap">
@@ -213,8 +286,11 @@ const I18N={
 es:{title:"Tap2Sound — Toca y suena",kicker:"NFC · Bluetooth · un toque",
 h1:'Toca. Y <span>suena</span>.',
 lead:"Acerca tu móvil a la etiqueta Tap2Sound y conéctate al instante con tu altavoz o auriculares Bluetooth. Sin menús, sin buscar dispositivos.",
-buy:"Comprar en Amazon",buy2:"Comprar en Amazon",how:"Cómo funciona",
-promotag:"PROMO",promoh:'Por cada 6 <b>tags</b>, un altavoz de <b>regalo</b> 🎁',promop:"Equipa toda tu casa con Tap2Sound y llévate un altavoz Bluetooth de regalo.",
+buy:"Descargar app",buy2:"Descargar en Google Play",how:"Cómo funciona",
+blpill:"BLISTER",blh:'Pide tu <span>blister</span>',blp:"Un cartón con 3 etiquetas NFC Tap2Sound listas para pegar: altavoz, auriculares y coche.",blprice:"15 €",blper:"+ 5 € de envío · blister de 3 NFC",blbtn:"Pedir mi blister",blnote:"Tras el pago, envíanos tu dirección de envío con el formulario de abajo.",
+tgpill:"LA ETIQUETA",tgh:'Engancha. Sincroniza. <span>Disfruta.</span>',tgp:"Cada etiqueta Tap2Sound lleva adhesivo 3M en el reverso: pégala en tu altavoz, tus auriculares o tu coche.",
+tg1t:"Engancha",tg1p:"Pega la etiqueta en tu dispositivo; el adhesivo del reverso la fija.",tg2t:"Sincroniza",tg2p:"Empareja la etiqueta una sola vez desde la app.",tg3t:"Disfruta",tg3p:"Acerca el móvil y suena. Un toque y listo.",tgfront:"Anverso",tgback:"Reverso",
+promotag:"PROMO",promoh:'Por cada 7 <b>tags</b>, un altavoz de <b>regalo</b> 🎁',promop:"Equipa toda tu casa con Tap2Sound y llévate un altavoz Bluetooth de regalo.",
 s1:"Pega la <b>etiqueta NFC</b> en tu altavoz",s2:"Empareja una vez con la <b>app</b>",s3:"A partir de ahí, <b>toca y suena</b>",
 fh:"Un toque, tres formas de escuchar",fsub:"La misma etiqueta, cualquier dispositivo Bluetooth.",
 c1t:"Altavoz portátil",c1p:"Llévatelo a cualquier sitio. Un toque y tu música suena allá donde estés.",
@@ -224,8 +300,11 @@ ftitle:"¿Listo para tocar y sonar?",cont:"Escríbenos para pedidos o dudas",sen
 en:{title:"Tap2Sound — Tap and it plays",kicker:"NFC · Bluetooth · one tap",
 h1:'Tap. And it <span>plays</span>.',
 lead:"Hold your phone to the Tap2Sound tag and connect instantly to your Bluetooth speaker or headphones. No menus, no device hunting.",
-buy:"Buy on Amazon",buy2:"Buy on Amazon",how:"How it works",
-promotag:"PROMO",promoh:'Every 6 <b>tags</b>, a <b>free</b> speaker 🎁',promop:"Equip your whole home with Tap2Sound and get a Bluetooth speaker for free.",
+buy:"Get the app",buy2:"Get it on Google Play",how:"How it works",
+blpill:"BLISTER PACK",blh:'Order your <span>blister pack</span>',blp:"One card with 3 Tap2Sound NFC tags ready to stick: speaker, headphones and car.",blprice:"€15",blper:"+ €5 shipping · pack of 3 NFC tags",blbtn:"Order my blister pack",blnote:"After paying, send us your shipping address using the form below.",
+tgpill:"THE TAG",tgh:'Stick it. Sync it. <span>Enjoy it.</span>',tgp:"Every Tap2Sound tag has a 3M adhesive back: stick it on your speaker, headphones or car.",
+tg1t:"Stick it",tg1p:"Place the tag on your device; the adhesive back holds it in place.",tg2t:"Sync it",tg2p:"Pair the tag just once from the app.",tg3t:"Enjoy it",tg3p:"Hold your phone close and it plays. One tap, done.",tgfront:"Front",tgback:"Back",
+promotag:"PROMO",promoh:'Every 7 <b>tags</b>, a <b>free</b> speaker 🎁',promop:"Equip your whole home with Tap2Sound and get a Bluetooth speaker for free.",
 s1:"Stick the <b>NFC tag</b> on your speaker",s2:"Pair once with the <b>app</b>",s3:"From then on, <b>tap and play</b>",
 fh:"One tap, three ways to listen",fsub:"The same tag, any Bluetooth device.",
 c1t:"Portable speaker",c1p:"Take it anywhere. One tap and your music plays wherever you are.",
